@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/29 18:13:20 by mdeville          #+#    #+#             */
-/*   Updated: 2017/11/29 18:19:28 by mdeville         ###   ########.fr       */
+/*   Created: 2017/08/16 23:45:44 by mdeville          #+#    #+#             */
+/*   Updated: 2017/12/01 18:41:16 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	ft_nbrlen(intmax_t nbr)
+char	*ft_strdup(const char *s1)
 {
-	size_t i;
+	size_t	len;
+	size_t	i;
+	char	*res;
 
-	i = 1;
-	while (nbr >= 10 || nbr <= -10)
+	len = ft_strlen(s1);
+	res = (char *)malloc(sizeof(char) * (len + 1));
+	if (!res)
+		return (NULL);
+	i = 0;
+	while (i < len)
 	{
-		nbr /= 10;
+		res[i] = s1[i];
 		i++;
 	}
-	return ((nbr < 0) ? i + 1 : i);
+	res[i] = '\0';
+	return (res);
 }

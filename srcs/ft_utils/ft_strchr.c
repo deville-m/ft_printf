@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_intmax_base_fd.c                            :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/28 16:56:16 by mdeville          #+#    #+#             */
-/*   Updated: 2017/11/29 19:36:19 by mdeville         ###   ########.fr       */
+/*   Created: 2017/08/18 22:28:20 by mdeville          #+#    #+#             */
+/*   Updated: 2017/12/01 18:40:44 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include  "ft_printf.h"
+#include "ft_printf.h"
 
-void		ft_put_intmax_base_fd(
-							const int fd,
-							intmax_t nbr,
-							const char *base,
-							t_token *token)
+char	*ft_strchr(const char *s, int c)
 {
-	int		blen;
-	int		nbrlen;
-	char	*tmp;
+	char	*ptr;
 
-	blen = ft_strlen(base);
-	nbrlen = ft_nbrlen(nbr);
-	tmp = ft_itoamax(nbr);
-	
+	ptr = (char *)s;
+	while (*ptr && *ptr != (char)c)
+		ptr++;
+	return ((*ptr || (!*ptr && !c)) ? ptr : NULL);
 }

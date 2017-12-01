@@ -3,3 +3,4 @@ main.c
 *.o
 .DS_Store
 *~
+tests.c

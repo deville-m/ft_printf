@@ -6,26 +6,31 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 14:02:05 by mdeville          #+#    #+#             */
-/*   Updated: 2017/11/29 18:22:43 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/01 19:28:18 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
+# include <limits.h>
 
 /*
 ** Typedefs to restore sanity
 */
 
+typedef long long int llint;
+typedef unsigned long long int ullint;
+
 typedef struct		s_token
 {
-	int				flags;
-	size_t			width;
-	size_t			precision;
+	char			flags[5];
+	int				width;
+	int				precision;
 	char			length[3];
 	char			specifier;
 	struct s_token	*next;
@@ -63,15 +68,14 @@ void				ft_putstr_fd(
 						const char *str,
 						t_token *token);
 
-void				ft_put_intmax_base_fd(
+void				ft_put_llint_fd(
 						const int fd,
-						intmax_t nbr,
-						const char *base,
+						llint nbr,
 						t_token *token);
 
-void				ft_put_uintmax_base_fd(
+void				ft_put_ullint_base_fd(
 						const int fd,
-						uintmax_t nbr,
+						ullint nbr,
 						const char *base,
 						t_token *token);
 
@@ -85,7 +89,8 @@ void				ft_put_pointer_fd(
 */
 
 size_t				ft_strlen(const char *str);
-size_t				ft_nbrlen(intmax_t nbr);
-char				*ft_imaxtoa(intmax_t n);
+char				*ft_llitoa(llint nbr, t_token *token);
+char				*ft_strchr(const char *s, int c);
+char				*ft_strdup(const char *str);
 
 #endif

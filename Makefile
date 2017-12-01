@@ -20,9 +20,10 @@ FT_PUTSRC= $(addprefix $(FT_PUTSRC_DIR), \
 
 FT_UTILS_DIR= $(addprefix $(SRC_DIR), ft_utils/)
 FT_UTILS= $(addprefix $(FT_UTILS_DIR), \
+				ft_strchr.c \
 				ft_strlen.c \
 				ft_imaxtoa.c \
-				ft_nbrlen.c)
+				ft_strdup.c)
 
 SRC= $(FT_PRINTSRC) $(FT_PUTSRC)
 OBJ= $(notdir $(SRC:.c=.o))
