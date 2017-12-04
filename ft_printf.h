@@ -6,14 +6,13 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 14:02:05 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/01 19:28:18 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/04 23:22:58 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
@@ -26,14 +25,24 @@
 typedef long long int llint;
 typedef unsigned long long int ullint;
 
+typedef enum		e_length
+{
+	None,
+	hh,
+	h,
+	l,
+	ll,
+	j,
+	z
+}					t_length;
+
 typedef struct		s_token
 {
 	char			flags[5];
 	int				width;
 	int				precision;
-	char			length[3];
+	t_length		length;
 	char			specifier;
-	struct s_token	*next;
 }					t_token;
 
 /*
@@ -45,51 +54,61 @@ int					ft_fprintf(
 						const char *format,
 						...);
 
+int					ft_printf(
+						const char *format,
+						...);
+
 int					ft_vfprintf(
 						const int fd,
 						const char *format,
 						va_list ap);
 
-int					ft_printf(
-						const char *format,
-						...);
+/*
+** Parsing functions
+*/
+
+t_token				parse_token(const char *str);
 
 /*
 ** Printing functions
 */
 
-void				ft_putchar_fd(
+int					print_token(
 						const int fd,
-						int c,
-						t_token *token);
+						t_token token,
+						va_list ap);
 
-void				ft_putstr_fd(
+size_t				ft_putchar_fd(
 						const int fd,
-						const char *str,
-						t_token *token);
+						t_token token,
+						va_list ap);
 
-void				ft_put_llint_fd(
+size_t				ft_putstr_fd(
 						const int fd,
-						llint nbr,
-						t_token *token);
+						t_token token,
+						va_list ap);
 
-void				ft_put_ullint_base_fd(
+size_t				ft_put_llint_fd(
 						const int fd,
-						ullint nbr,
-						const char *base,
-						t_token *token);
+						t_token token,
+						va_list ap);
 
-void				ft_put_pointer_fd(
+size_t				ft_put_ullint_base_fd(
 						const int fd,
-						void *p,
-						t_token *token);
+						t_token token,
+						va_list ap);
+
+size_t				ft_put_pointer_fd(
+						const int fd,
+						t_token token,
+						va_list ap);
 
 /*
 ** Utilities
 */
 
 size_t				ft_strlen(const char *str);
-char				*ft_llitoa(llint nbr, t_token *token);
+char				*ft_llitoa(llint nbr, t_token token);
 char				*ft_strchr(const char *s, int c);
 char				*ft_strdup(const char *str);
 

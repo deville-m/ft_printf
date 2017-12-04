@@ -6,32 +6,35 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 16:48:07 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/01 10:50:45 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/04 23:24:06 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putstr_fd(const int fd, const char *str, t_token *token)
+size_t	ft_putstr_fd(const int fd, t_token t, va_list ap)
 {
 	int		len;
-	int		width;
-	int		precision;
+	char	*str;
+	size_t	cpt;
 
-	width = token->width;
-	precision = token->precision;
+	str = va_arg(ap, char *);
 	len = ft_strlen(str);
-	len = (precision >= 0 && precision < len) ? precision : len;
-	if (!ft_strchr(token->flags, '-'))
-		while (width > len)
+	len = (t.precision >= 0 && t.precision < len) ? t.precision : len;
+	cpt = len;
+	if (!ft_strchr(t.flags, '-'))
+		while (t.width > len)
 		{
 			write(fd, " ", 1);
-			width--;
+			t.width--;
+			cpt++;
 		}
 	write(fd, str, len);
-	while (width > len)
+	while (t.width > len)
 	{
 		write(fd, " ", 1);
-		width--;
+		t.width--;
+		cpt++;
 	}
+	return (cpt);
 }

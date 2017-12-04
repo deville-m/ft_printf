@@ -14,27 +14,33 @@ FT_PUTSRC_DIR= $(addprefix $(SRC_DIR), ft_putsrc/)
 FT_PUTSRC= $(addprefix $(FT_PUTSRC_DIR), \
 			ft_putchar_fd.c \
 			ft_putstr_fd.c \
-			ft_put_intmax_base_fd.c \
-			ft_put_uintmax_base_fd.c \
+			ft_put_llint_fd.c \
+			ft_put_ullint_base_fd.c \
 			ft_put_pointer.c)
 
 FT_UTILS_DIR= $(addprefix $(SRC_DIR), ft_utils/)
 FT_UTILS= $(addprefix $(FT_UTILS_DIR), \
-				ft_strchr.c \
-				ft_strlen.c \
-				ft_imaxtoa.c \
-				ft_strdup.c)
+			ft_strchr.c \
+			ft_strlen.c \
+			ft_imaxtoa.c \
+			ft_strdup.c)
 
-SRC= $(FT_PRINTSRC) $(FT_PUTSRC)
-OBJ= $(notdir $(SRC:.c=.o))
+PARSER_DIR= $(addprefix $(SRC_DIR), parser/)
+PARSER= $(addprefix $($PARSER_DIR), \
+			parser.c \
+			parse_token.c \
+			print_token.c)
+
+SRC= $(FT_PRINTSRC) $(FT_PUTSRC) $(FT_UTILS) $(PARSER)
+OBJ= $(SRC:.c=.o)
 
 all: $(NAME)
 
 %.o: %.c $(HEADER)
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $<
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(OBJ)
-	@$(AR) $(ARFLAGS) $(NAME) $(OBJ)
+	$(AR) $(ARFLAGS) $(NAME) $(OBJ)
 
 clean:
 	rm -f $(OBJ)
