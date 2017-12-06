@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:36:20 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/06 13:32:44 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/06 14:04:20 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ static int	parse_precision(const char *s, t_token *token, va_list ap)
 		token->precision = 1;
 		return (0);
 	}
-	i = 1;
 	if (*s == '*')
 	{
 		token->precision = va_arg(ap, int);
 		return (1);
 	}
+	i = 1;
 	token->precision = ft_atoi(s + 1);
 	while (s[i] >= '0' && s[i] <= '9')
 		i++;
@@ -101,16 +101,23 @@ t_token		parse_token(const char *str, size_t *i, va_list ap)
 {
 	t_token	token;
 
+	if (*str == '%')
+	{
+		token.specifier = '%';
+		return (token);
+	}
 	*i += parse_flags(str + *i, &token);
 	*i += parse_width(str + *i, &token, ap);
 	*i += parse_precision(str + *i, &token, ap);
 	*i += parse_length(str + *i, &token);
-	if (ft_strchr("sSpdDioOuUxXcCn", str[*i]))
+	if (!s[*i] && ft_strchr("sSpdDioOuUxXcCn", str[*i]))
 	{
 		token.specifier = str[*i];
+		if (token.specifier == 's' || token.specifier == 'S')
+			token.precision = -1;
 		*i += 1;
 	}
 	else
-		token.specifier = '-';
+		token.specifier = '%';
 	return (token);
 }
