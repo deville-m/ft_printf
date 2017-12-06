@@ -2,7 +2,7 @@ NAME= libftprintf.a
 AR= ar
 ARFLAGS= rcs
 CC= gcc
-CFLAGS= -Wall -Wextra
+CFLAGS= -Wall -Wextra -fsanitize=address
 INCLUDES= -I./
 HEADER= ft_printf.h
 SRC_DIR= srcs/
