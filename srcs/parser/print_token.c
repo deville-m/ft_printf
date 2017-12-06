@@ -6,13 +6,13 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 17:09:16 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/04 23:19:07 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/06 13:13:40 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	print_token(const int fd, t_token token, va_list ap)
+int		print_token(const int fd, t_token token, va_list ap)
 {
 	if (token.specifier == 'D'
 			|| token.specifier == 'd'

@@ -6,31 +6,32 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:36:20 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/06 12:00:47 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/06 13:32:44 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 static int	parse_length(const char *s, t_token *token)
 {
-	if (ft_strcmp(s, "ll") == 0)
+	if (s[0] == 'l' && s[1] == 'l')
 	{
 		token->length = ll;
 		return (2);
 	}
-	else if (ft_strcmp(s, "l") == 0)
+	else if (s[0] == 'l')
 		token->length = l;
-	else if (ft_strcmp(s, "hh") == 0)
+	else if (s[0] == 'h' && s[1] == 'h')
 	{
 		token->length = hh;
 		return (2);
 	}
-	else if (ft_strcmp(s, "h") == 0)
+	else if (s[0] == 'h')
 		token->length = h;
-	else if (ft_strcmp(s, "j") == 0)
+	else if (s[0] == 'j')
 		token->length = j;
-	else if (ft_strcmp(s, "z") == 0)
+	else if (s[0] == 'z')
 		token->length = z;
 	else
 	{
@@ -110,6 +111,6 @@ t_token		parse_token(const char *str, size_t *i, va_list ap)
 		*i += 1;
 	}
 	else
-		token.specifier = '\0';
+		token.specifier = '-';
 	return (token);
 }

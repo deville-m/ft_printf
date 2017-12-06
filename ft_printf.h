@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 14:02:05 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/06 12:07:00 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/06 13:10:02 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_token							parse_token(
 ** Printing functions
 */
 
-size_t							print_token(
+int								print_token(
 									const int fd,
 									t_token token,
 									va_list ap);
