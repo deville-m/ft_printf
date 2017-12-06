@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:36:20 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/06 14:05:46 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/06 14:16:26 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,16 +101,17 @@ t_token		parse_token(const char *str, size_t *i, va_list ap)
 {
 	t_token	token;
 
-	if (*str == '%')
+	if (str[*i] == '%')
 	{
 		token.specifier = '%';
+		i += 1;
 		return (token);
 	}
 	*i += parse_flags(str + *i, &token);
 	*i += parse_width(str + *i, &token, ap);
 	*i += parse_precision(str + *i, &token, ap);
 	*i += parse_length(str + *i, &token);
-	if (!str[*i] && ft_strchr("sSpdDioOuUxXcCn", str[*i]))
+	if (str[*i] && ft_strchr("sSpdDioOuUxXcCn", str[*i]))
 	{
 		token.specifier = str[*i];
 		if (token.specifier == 's' || token.specifier == 'S')
@@ -118,6 +119,6 @@ t_token		parse_token(const char *str, size_t *i, va_list ap)
 		*i += 1;
 	}
 	else
-		token.specifier = '%';
+		token.specifier = '-';
 	return (token);
 }
