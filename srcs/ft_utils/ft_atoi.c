@@ -1,40 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vfprintf.c                                      :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/29 13:33:17 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/06 12:56:07 by mdeville         ###   ########.fr       */
+/*   Created: 2017/08/20 20:48:46 by mdeville          #+#    #+#             */
+/*   Updated: 2017/11/13 15:30:22 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int		ft_vfprintf(const int fd, const char *format, va_list ap)
+int	ft_atoi(const char *str)
 {
-	size_t	i;
-	size_t	cpt;
-	t_token	token;
+	int	res;
+	int	neg;
 
-	if (!format)
-		return (-1);
-	i = 0;
-	cpt = 0;
-	while (format[i])
-	{
-		if (format[i] == '%')
-		{
-			i += 1;
-			token = parse_token(format, &i, ap);
-			cpt += print_token(fd, token, ap);
-		}
-		else
-		{
-			write(1, format + i++, 1);
-			cpt += 1;
-		}
-	}
-	return (cpt);
+	res = 0;
+	neg = 1;
+	while ((*str > 8 && *str < 14) || *str == ' ')
+		str++;
+	neg = (*str == '-') ? -1 : 1;
+	str = (neg == -1 || *str == '+') ? str + 1 : str;
+	while (*str >= '0' && *str <= '9')
+		res = res * 10 + (*str++ - '0');
+	return (res * neg);
 }

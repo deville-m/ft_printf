@@ -1,40 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vfprintf.c                                      :+:      :+:    :+:   */
+/*   ft_put_pointer_fd.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/29 13:33:17 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/06 12:56:07 by mdeville         ###   ########.fr       */
+/*   Created: 2017/12/05 15:52:45 by mdeville          #+#    #+#             */
+/*   Updated: 2017/12/06 12:06:43 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_vfprintf(const int fd, const char *format, va_list ap)
+size_t	ft_put_pointer_fd(const int fd, t_token token, va_list ap)
 {
-	size_t	i;
-	size_t	cpt;
-	t_token	token;
+	t_ullint	n;
+	size_t		cpt;
+	int			len;
+	char		*res;
 
-	if (!format)
-		return (-1);
-	i = 0;
-	cpt = 0;
-	while (format[i])
+	n = (t_ullint)va_arg(ap, void *);
+	res = ft_ullitoa_base(n, token);
+	len = ft_strlen(res);
+	cpt = len;
+	if (!ft_strchr(token.flags, '-'))
 	{
-		if (format[i] == '%')
+		while (token.width-- > len)
 		{
-			i += 1;
-			token = parse_token(format, &i, ap);
-			cpt += print_token(fd, token, ap);
-		}
-		else
-		{
-			write(1, format + i++, 1);
-			cpt += 1;
+			write(fd, " ", 1);
+			cpt++;
 		}
 	}
+	write(fd, res, len);
+	while (token.width-- > len)
+	{
+		write(fd, " ", 1);
+		cpt++;
+	}
+	free(res);
 	return (cpt);
 }

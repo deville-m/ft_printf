@@ -4,3 +4,4 @@ main.c
 .DS_Store
 *~
 tests.c
+libftprintf.a

@@ -1,40 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vfprintf.c                                      :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/29 13:33:17 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/06 12:56:07 by mdeville         ###   ########.fr       */
+/*   Created: 2017/08/20 18:32:45 by mdeville          #+#    #+#             */
+/*   Updated: 2017/11/06 18:15:48 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int		ft_vfprintf(const int fd, const char *format, va_list ap)
+int		ft_strcmp(const char *s1, const char *s2)
 {
-	size_t	i;
-	size_t	cpt;
-	t_token	token;
+	unsigned char *us1;
+	unsigned char *us2;
 
-	if (!format)
-		return (-1);
-	i = 0;
-	cpt = 0;
-	while (format[i])
+	us1 = (unsigned char *)s1;
+	us2 = (unsigned char *)s2;
+	while (*us1 && *us1 == *us2)
 	{
-		if (format[i] == '%')
-		{
-			i += 1;
-			token = parse_token(format, &i, ap);
-			cpt += print_token(fd, token, ap);
-		}
-		else
-		{
-			write(1, format + i++, 1);
-			cpt += 1;
-		}
+		us1++;
+		us2++;
 	}
-	return (cpt);
+	return (*us1 - *us2);
 }

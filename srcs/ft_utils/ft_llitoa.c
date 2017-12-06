@@ -6,13 +6,13 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/23 17:10:16 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/04 22:04:30 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/05 15:02:23 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char		*zero_pad(llint n, int nlen, t_token token)
+static char		*zero_pad(t_llint n, int nlen, t_token token)
 {
 	char	*res;
 	int		plus;
@@ -41,7 +41,7 @@ static char		*zero_pad(llint n, int nlen, t_token token)
 	return (res);
 }
 
-static char		*space_case(llint n, int nlen, t_token token)
+static char		*space_case(t_llint n, int nlen, t_token token)
 {
 	char	*res;
 	int		space;
@@ -66,7 +66,7 @@ static char		*space_case(llint n, int nlen, t_token token)
 	return (res);
 }
 
-static char		*plus_case(llint n, int nlen, t_token token)
+static char		*plus_case(t_llint n, int nlen, t_token token)
 {
 	char	*res;
 
@@ -85,7 +85,7 @@ static char		*plus_case(llint n, int nlen, t_token token)
 	return (res);
 }
 
-static size_t	ft_nbrlen(llint nbr)
+static size_t	ft_nbrlen(t_llint nbr)
 {
 	size_t i;
 
@@ -98,7 +98,7 @@ static size_t	ft_nbrlen(llint nbr)
 	return ((nbr < 0) ? i + 1 : i);
 }
 
-char			*ft_llitoa(llint n, t_token token)
+char			*ft_llitoa(t_llint n, t_token token)
 {
 	int		nbrlen;
 
@@ -112,5 +112,5 @@ char			*ft_llitoa(llint n, t_token token)
 		return (zero_pad(n, nbrlen, token));
 	if (ft_strchr(token.flags, '+'))
 		return (plus_case(n, nbrlen, token));
-	return (space_case(n , nbrlen, token));
+	return (space_case(n, nbrlen, token));
 }

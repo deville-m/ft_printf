@@ -6,30 +6,30 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 16:56:16 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/04 23:25:49 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/05 15:52:16 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include  "ft_printf.h"
+#include "ft_printf.h"
 
-static llint	cast(va_list ap, t_token token)
+static t_llint	cast(va_list ap, t_token token)
 {
-	llint nbr;
+	t_llint nbr;
 
-	nbr = va_arg(ap, llint);
+	nbr = va_arg(ap, t_llint);
 	if (token.length == hh)
 		nbr = (char)nbr;
-	if (token.length == h)
+	else if (token.length == h)
 		nbr = (short int)nbr;
-	if (token.length == l)
+	else if (token.length == l || token.specifier == 'D')
 		nbr = (long int)nbr;
-	if (token.length == ll)
+	else if (token.length == ll)
 		nbr = (long long int)nbr;
-	if (token.length == j)
+	else if (token.length == j)
 		nbr = (intmax_t)nbr;
-	if (token.length == z)
+	else if (token.length == z)
 		nbr = (size_t)nbr;
-	if (token.length == None)
+	else if (token.length == None)
 		nbr = (int)nbr;
 	return (nbr);
 }
@@ -56,7 +56,7 @@ size_t			ft_put_llint_fd(
 	char	*tmp;
 	int		len;
 	int		cpt;
-	llint	nbr;
+	t_llint	nbr;
 
 	nbr = cast(ap, token);
 	cpt = 0;
