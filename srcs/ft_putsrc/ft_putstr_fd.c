@@ -6,34 +6,59 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 16:48:07 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/04 23:24:06 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/06 16:29:27 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	ft_putstr_fd(const int fd, t_token t, va_list ap)
+static int	null_case(const int fd, t_token t)
+{
+	int		cpt;
+	int		len;
+	char	buff[7];
+
+	ft_strcpy(buff, "(null)");
+	len = 6;
+	len = (t.precision >= 0 && t.precision < len) ? t.precision : len;
+	cpt = len;
+	if (!ft_strchr(t.flags, '-'))
+		while (t.width-- > len)
+		{
+			write(fd, " ", 1);
+			cpt++;
+		}
+	write(fd, buff, len);
+	while (t.width-- > len)
+	{
+		write(fd, " ", 1);
+		cpt++;
+	}
+	return (cpt);
+}
+
+int			ft_putstr_fd(const int fd, t_token t, va_list ap)
 {
 	int		len;
 	char	*str;
-	size_t	cpt;
+	int		cpt;
 
 	str = va_arg(ap, char *);
+	if (!str)
+		return (null_case(fd, t));
 	len = ft_strlen(str);
 	len = (t.precision >= 0 && t.precision < len) ? t.precision : len;
 	cpt = len;
 	if (!ft_strchr(t.flags, '-'))
-		while (t.width > len)
+		while (t.width-- > len)
 		{
 			write(fd, " ", 1);
-			t.width--;
 			cpt++;
 		}
 	write(fd, str, len);
-	while (t.width > len)
+	while (t.width-- > len)
 	{
 		write(fd, " ", 1);
-		t.width--;
 		cpt++;
 	}
 	return (cpt);

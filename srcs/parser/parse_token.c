@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:36:20 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/06 14:16:26 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/06 23:05:36 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	parse_precision(const char *s, t_token *token, va_list ap)
 
 	if (s[0] != '.' || !*s)
 	{
-		token->precision = 1;
+		token->precision = -1;
 		return (0);
 	}
 	if (*s == '*')
@@ -101,21 +101,16 @@ t_token		parse_token(const char *str, size_t *i, va_list ap)
 {
 	t_token	token;
 
-	if (str[*i] == '%')
-	{
-		token.specifier = '%';
-		i += 1;
-		return (token);
-	}
 	*i += parse_flags(str + *i, &token);
 	*i += parse_width(str + *i, &token, ap);
 	*i += parse_precision(str + *i, &token, ap);
 	*i += parse_length(str + *i, &token);
-	if (str[*i] && ft_strchr("sSpdDioOuUxXcCn", str[*i]))
+	if (str[*i] && ft_strchr("sSpdDioOuUxXcCn%", str[*i]))
 	{
 		token.specifier = str[*i];
-		if (token.specifier == 's' || token.specifier == 'S')
-			token.precision = -1;
+		if (!(token.specifier == 's' || token.specifier == 'S')
+			&& token.precision == -1)
+			token.precision = 1;
 		*i += 1;
 	}
 	else

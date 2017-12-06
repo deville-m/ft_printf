@@ -1,42 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_pointer_fd.c                                :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/05 15:52:45 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/06 12:06:43 by mdeville         ###   ########.fr       */
+/*   Created: 2017/12/06 16:58:49 by mdeville          #+#    #+#             */
+/*   Updated: 2017/12/06 22:44:19 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	ft_put_pointer_fd(const int fd, t_token token, va_list ap)
+static int	ft_nbrlen(intmax_t n)
 {
-	t_ullint	n;
-	size_t		cpt;
-	int			len;
-	char		*res;
+	int cpt;
 
-	n = (t_ullint)va_arg(ap, void *);
-	res = ft_ullitoa_base(n, token);
-	len = ft_strlen(res);
-	cpt = len;
-	if (!ft_strchr(token.flags, '-'))
+	cpt = 1;
+	while (n <= -10 || n >= 10)
 	{
-		while (token.width-- > len)
-		{
-			write(fd, " ", 1);
-			cpt++;
-		}
-	}
-	write(fd, res, len);
-	while (token.width-- > len)
-	{
-		write(fd, " ", 1);
+		n /= 10;
 		cpt++;
 	}
-	free(res);
 	return (cpt);
+}
+
+char		*ft_itoa(intmax_t n)
+{
+	int		nlen;
+	char	*res;
+
+	if (n == INTMAX_MIN)
+		return (ft_strdup("9223372036854775808"));
+	nlen = ft_nbrlen(n);
+	if (!(res = (char *)malloc(sizeof(char) * (nlen + 1))))
+		return (NULL);
+	res[nlen--] = '\0';
+	n = (n < 0) ? -n : n;
+	while (n >= 10)
+	{
+		res[nlen--] = n % 10 + '0';
+		n /= 10;
+	}
+	res[nlen--] = n + '0';
+	return (res);
 }

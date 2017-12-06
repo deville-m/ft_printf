@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 14:02:05 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/06 13:10:02 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/06 17:57:00 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
-# include <limits.h>
+# include <stdint.h>
 
 /*
 ** Typedefs to restore sanity
@@ -81,27 +81,21 @@ int								print_token(
 									t_token token,
 									va_list ap);
 
-size_t							ft_putchar_fd(
+int								ft_putpercent_fd(
+									const int fd,
+									t_token token);
+
+int								ft_putchar_fd(
 									const int fd,
 									t_token token,
 									va_list ap);
 
-size_t							ft_putstr_fd(
+int								ft_putstr_fd(
 									const int fd,
 									t_token token,
 									va_list ap);
 
-size_t							ft_put_llint_fd(
-									const int fd,
-									t_token token,
-									va_list ap);
-
-size_t							ft_put_ullint_base_fd(
-									const int fd,
-									t_token token,
-									va_list ap);
-
-size_t							ft_put_pointer_fd(
+int								ft_putint_fd(
 									const int fd,
 									t_token token,
 									va_list ap);
@@ -111,14 +105,10 @@ size_t							ft_put_pointer_fd(
 */
 
 size_t							ft_strlen(const char *str);
-char							*ft_llitoa(t_llint n, t_token token);
-char							*ft_ullitoa_base(t_ullint n, t_token token);
-char							*base_8(char *str, t_token token);
-char							*base_10(char *str, t_token token);
-char							*base_16(char *str, t_token token);
 char							*ft_strchr(const char *s, int c);
 char							*ft_strdup(const char *str);
 int								ft_atoi(const char *str);
-int								ft_strcmp(const char *s1, const char *s2);
+char							*ft_itoa(intmax_t n);
+char							*ft_strcpy(char *dst, const char *src);
 
 #endif

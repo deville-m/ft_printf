@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_putpercent_fd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/20 18:32:45 by mdeville          #+#    #+#             */
-/*   Updated: 2017/11/06 18:15:48 by mdeville         ###   ########.fr       */
+/*   Created: 2017/12/06 15:35:35 by mdeville          #+#    #+#             */
+/*   Updated: 2017/12/06 15:49:34 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_strcmp(const char *s1, const char *s2)
-{
-	unsigned char *us1;
-	unsigned char *us2;
+#include "ft_printf.h"
 
-	us1 = (unsigned char *)s1;
-	us2 = (unsigned char *)s2;
-	while (*us1 && *us1 == *us2)
+int		ft_putpercent_fd(const int fd, t_token token)
+{
+	int cpt;
+
+	cpt = 1;
+	if (!ft_strchr(token.flags, '-'))
 	{
-		us1++;
-		us2++;
+		while (token.width-- > 1)
+		{
+			write(fd, " ", 1);
+			cpt++;
+		}
 	}
-	return (*us1 - *us2);
+	write(fd, "%", 1);
+	while (token.width-- > 1)
+	{
+		write(fd, " ", 1);
+		cpt++;
+	}
+	return (cpt);
 }

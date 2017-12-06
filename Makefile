@@ -2,7 +2,7 @@ NAME= libftprintf.a
 AR= ar
 ARFLAGS= rcs
 CC= gcc
-CFLAGS= -Wall -Wextra
+CFLAGS= -Wall -Wextra -Werror
 INCLUDES= -I./
 HEADER= ft_printf.h
 SRC_DIR= srcs/
@@ -15,24 +15,19 @@ FT_PRINTSRC= $(addprefix $(FT_PRINTSRC_DIR), \
 
 FT_PUTSRC_DIR= $(addprefix $(SRC_DIR), ft_putsrc/)
 FT_PUTSRC= $(addprefix $(FT_PUTSRC_DIR), \
+			ft_putpercent_fd.c \
 			ft_putchar_fd.c \
 			ft_putstr_fd.c \
-			ft_put_llint_fd.c \
-			ft_put_ullint_base_fd.c \
-			ft_put_pointer_fd.c)
+			ft_putint_fd.c)
 
 FT_UTILS_DIR= $(addprefix $(SRC_DIR), ft_utils/)
 FT_UTILS= $(addprefix $(FT_UTILS_DIR), \
-			base_8.c \
-			base_10.c \
-			base_16.c \
 			ft_strchr.c \
 			ft_strlen.c \
-			ft_llitoa.c \
-			ft_ullitoa.c \
-			ft_strcmp.c \
 			ft_atoi.c \
-			ft_strdup.c)
+			ft_itoa.c \
+			ft_strdup.c \
+			ft_strcpy.c)
 
 PARSER_DIR= $(addprefix $(SRC_DIR), parser/)
 PARSER= $(addprefix $(PARSER_DIR), \

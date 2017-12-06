@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/21 18:54:36 by mdeville          #+#    #+#             */
-/*   Updated: 2017/11/06 20:11:20 by mdeville         ###   ########.fr       */
+/*   Created: 2017/08/18 15:07:29 by mdeville          #+#    #+#             */
+/*   Updated: 2017/08/18 16:04:45 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "libft.h"
+#include <string.h>
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strcpy(char *dest, const char *src)
 {
-	unsigned int	len;
-	unsigned int	i;
-	char			*res;
+	size_t	i;
 
-	if (!s1 || !s2)
-		return (NULL);
-	len = ft_strlen(s1);
-	len += ft_strlen(s2);
-	res = (char *)malloc(sizeof(char) * (len + 1));
-	if (!res)
-		return (NULL);
 	i = 0;
-	while (*s1)
-		res[i++] = *s1++;
-	while (*s2)
-		res[i++] = *s2++;
-	res[i] = '\0';
-	return (res);
+	while (src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }
