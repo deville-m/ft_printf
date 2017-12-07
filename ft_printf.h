@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 14:02:05 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/06 17:57:00 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/07 10:42:51 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,11 @@ int								ft_putint_fd(
 									t_token token,
 									va_list ap);
 
+int								ft_putuint_fd(
+									const int fd,
+									t_token token,
+									va_list ap);
+
 /*
 ** Utilities
 */
@@ -109,6 +114,7 @@ char							*ft_strchr(const char *s, int c);
 char							*ft_strdup(const char *str);
 int								ft_atoi(const char *str);
 char							*ft_itoa(intmax_t n);
+char							*ft_utoa_base(uintmax_t n, const char *base);
 char							*ft_strcpy(char *dst, const char *src);
 
 #endif
