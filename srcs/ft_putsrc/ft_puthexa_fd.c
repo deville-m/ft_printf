@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 12:09:17 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/07 14:23:31 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/07 16:55:28 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,11 @@ static char			*apply_options(
 	return (res);
 }
 
-static uintmax_t	convert(va_list ap, t_length length)
+static uintmax_t	convert(va_list *ap, t_length length)
 {
 	uintmax_t n;
 
-	n = va_arg(ap, uintmax_t);
+	n = va_arg(*ap, uintmax_t);
 	if (length == l)
 		n = (unsigned long)n;
 	else if (length == hh)
@@ -108,7 +108,7 @@ static uintmax_t	convert(va_list ap, t_length length)
 	return (n);
 }
 
-int					ft_puthexa_fd(const int fd, t_token token, va_list ap)
+int					ft_puthexa_fd(const int fd, t_token token, va_list *ap)
 {
 	uintmax_t	n;
 	int			len;

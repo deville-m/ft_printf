@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 16:42:30 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/07 10:16:19 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/07 16:55:54 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,11 @@ static char		*apply_options(intmax_t n, char *ascii, int alen, t_token token)
 	return (res);
 }
 
-static intmax_t	convert(va_list ap, t_length length, char spe)
+static intmax_t	convert(va_list *ap, t_length length, char spe)
 {
 	intmax_t n;
 
-	n = va_arg(ap, intmax_t);
+	n = va_arg(*ap, intmax_t);
 	if (length == l || spe == 'D')
 		n = (long)n;
 	else if (length == hh)
@@ -108,7 +108,7 @@ static intmax_t	convert(va_list ap, t_length length, char spe)
 	return (n);
 }
 
-int				ft_putint_fd(const int fd, t_token token, va_list ap)
+int				ft_putint_fd(const int fd, t_token token, va_list *ap)
 {
 	intmax_t	n;
 	int			len;

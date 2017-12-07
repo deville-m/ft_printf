@@ -6,20 +6,20 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 16:13:15 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/06 15:16:14 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/07 16:54:53 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_putchar_fd(const int fd, t_token token, va_list ap)
+int		ft_putchar_fd(const int fd, t_token token, va_list *ap)
 {
 	int		width;
 	char	c;
 	int		cpt;
 
 	width = token.width;
-	c = va_arg(ap, int);
+	c = va_arg(*ap, int);
 	cpt = 1;
 	if (!ft_strchr(token.flags, '-'))
 	{

@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 14:02:05 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/07 14:24:47 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/07 17:14:52 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int								ft_printf(
 int								ft_vfprintf(
 									const int fd,
 									const char *format,
-									va_list ap);
+									va_list *ap);
 
 /*
 ** Parsing functions
@@ -70,7 +70,7 @@ int								ft_vfprintf(
 t_token							parse_token(
 									const char *str,
 									size_t *i,
-									va_list ap);
+									va_list *ap);
 
 /*
 ** Printing functions
@@ -79,7 +79,7 @@ t_token							parse_token(
 int								print_token(
 									const int fd,
 									t_token token,
-									va_list ap);
+									va_list *ap);
 
 int								ft_putpercent_fd(
 									const int fd,
@@ -88,37 +88,37 @@ int								ft_putpercent_fd(
 int								ft_putchar_fd(
 									const int fd,
 									t_token token,
-									va_list ap);
+									va_list *ap);
 
 int								ft_putstr_fd(
 									const int fd,
 									t_token token,
-									va_list ap);
+									va_list *ap);
 
 int								ft_putint_fd(
 									const int fd,
 									t_token token,
-									va_list ap);
+									va_list *ap);
 
 int								ft_putuint_fd(
 									const int fd,
 									t_token token,
-									va_list ap);
+									va_list *ap);
 
 int								ft_putoctal_fd(
 									const int fd,
 									t_token token,
-									va_list ap);
+									va_list *ap);
 
 int								ft_puthexa_fd(
 									const int fd,
 									t_token token,
-									va_list ap);
+									va_list *ap);
 
 int								ft_putpointer_fd(
 									const int fd,
 									t_token token,
-									va_list ap);
+									va_list *ap);
 
 /*
 ** Utilities

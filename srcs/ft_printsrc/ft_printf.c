@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 11:53:12 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/04 23:21:13 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/07 17:11:22 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		ft_printf(const char *format, ...)
 	va_list	ap;
 
 	va_start(ap, format);
-	res = ft_vfprintf(1, format, ap);
+	res = ft_vfprintf(1, format, &ap);
 	va_end(ap);
 	return (res);
 }

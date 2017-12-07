@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 14:10:00 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/07 14:49:20 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/07 16:57:08 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,14 @@ static char			*apply_options(
 	return (res);
 }
 
-int					ft_putpointer_fd(const int fd, t_token token, va_list ap)
+int					ft_putpointer_fd(const int fd, t_token token, va_list *ap)
 {
 	uintmax_t	n;
 	int			len;
 	int			cpt;
 	char		*tmp;
 
-	n = va_arg(ap, uintmax_t);
+	n = va_arg(*ap, uintmax_t);
 	if (!(tmp = ft_utoa_base(n, "0123456789abcdef")))
 		return (0);
 	if (!(tmp = apply_options(tmp, ft_strlen(tmp), token)))

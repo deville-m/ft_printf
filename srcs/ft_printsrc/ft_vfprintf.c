@@ -6,13 +6,13 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 13:33:17 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/07 14:58:10 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/07 17:10:36 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_vfprintf(const int fd, const char *format, va_list ap)
+int		ft_vfprintf(const int fd, const char *format, va_list *ap)
 {
 	size_t	i;
 	size_t	cpt;

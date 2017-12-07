@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 16:48:07 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/06 16:29:27 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/07 16:57:27 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ static int	null_case(const int fd, t_token t)
 	return (cpt);
 }
 
-int			ft_putstr_fd(const int fd, t_token t, va_list ap)
+int			ft_putstr_fd(const int fd, t_token t, va_list *ap)
 {
 	int		len;
 	char	*str;
 	int		cpt;
 
-	str = va_arg(ap, char *);
+	str = va_arg(*ap, char *);
 	if (!str)
 		return (null_case(fd, t));
 	len = ft_strlen(str);

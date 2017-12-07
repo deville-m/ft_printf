@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:36:20 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/07 14:45:39 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/07 16:53:59 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	parse_length(const char *s, t_token *token)
 	return (1);
 }
 
-static int	parse_precision(const char *s, t_token *token, va_list ap)
+static int	parse_precision(const char *s, t_token *token, va_list *ap)
 {
 	size_t i;
 
@@ -52,7 +52,7 @@ static int	parse_precision(const char *s, t_token *token, va_list ap)
 	}
 	if (s[1] == '*')
 	{
-		token->precision = va_arg(ap, int);
+		token->precision = va_arg(*ap, int);
 		return (2);
 	}
 	i = 1;
@@ -62,7 +62,7 @@ static int	parse_precision(const char *s, t_token *token, va_list ap)
 	return (i);
 }
 
-static int	parse_width(const char *s, t_token *token, va_list ap)
+static int	parse_width(const char *s, t_token *token, va_list *ap)
 {
 	size_t i;
 
@@ -71,7 +71,7 @@ static int	parse_width(const char *s, t_token *token, va_list ap)
 	i = 0;
 	if (*s == '*')
 	{
-		token->width = va_arg(ap, int);
+		token->width = va_arg(*ap, int);
 		return (1);
 	}
 	token->width = ft_atoi(s);
@@ -100,7 +100,7 @@ static int	parse_flags(const char *s, t_token *token)
 	return (i);
 }
 
-t_token		parse_token(const char *str, size_t *i, va_list ap)
+t_token		parse_token(const char *str, size_t *i, va_list *ap)
 {
 	t_token	token;
 

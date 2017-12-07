@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 15:05:48 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/07 15:09:42 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/07 15:38:53 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static char		*apply_options(intmax_t n, char *ascii, int alen, t_token token)
 
 static intmax_t	convert(intmax_t n, t_length length)
 {
-	if (length == l || spe == 'D')
+	if (length == l)
 		n = (long)n;
 	else if (length == hh)
 		n = (char)n;
@@ -105,7 +105,7 @@ static intmax_t	convert(intmax_t n, t_length length)
 	return (n);
 }
 
-int				ft_putint_fd(const int fd, t_token token, intmax_t n)
+int				ft_putn_fd(const int fd, t_token token, intmax_t n)
 {
 	int			len;
 	int			cpt;
