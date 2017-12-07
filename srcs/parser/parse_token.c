@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:36:20 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/06 23:05:36 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/07 14:45:39 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,14 @@ static int	parse_precision(const char *s, t_token *token, va_list ap)
 		token->precision = -1;
 		return (0);
 	}
-	if (*s == '*')
+	if (s[1] == '*')
 	{
 		token->precision = va_arg(ap, int);
-		return (1);
+		return (2);
 	}
 	i = 1;
 	token->precision = ft_atoi(s + 1);
-	while (s[i] >= '0' && s[i] <= '9')
+	while ((s[i] >= '0' && s[i] <= '9') || s[i] == '-')
 		i++;
 	return (i);
 }
@@ -75,7 +75,7 @@ static int	parse_width(const char *s, t_token *token, va_list ap)
 		return (1);
 	}
 	token->width = ft_atoi(s);
-	while (s[i] >= '0' && s[i] <= '9')
+	while ((s[i] >= '0' && s[i] <= '9') || s[i] == '-')
 		i++;
 	return (i);
 }
@@ -86,6 +86,9 @@ static int	parse_flags(const char *s, t_token *token)
 	size_t	i;
 
 	i = 0;
+	cpt = 0;
+	while (cpt < 5)
+		token->flags[cpt++] = '\0';
 	cpt = 0;
 	while (ft_strchr("# -0+", s[i]) && cpt < 4)
 	{

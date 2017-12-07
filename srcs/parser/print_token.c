@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 17:09:16 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/07 10:38:18 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/07 14:26:31 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,11 @@ int		print_token(const int fd, t_token t, va_list ap)
 		return (ft_putint_fd(fd, t, ap));
 	else if (t.specifier == 'u' || t.specifier == 'U')
 		return (ft_putuint_fd(fd, t, ap));
+	else if (t.specifier == 'o' || t.specifier == 'O')
+		return (ft_putoctal_fd(fd, t, ap));
+	else if (t.specifier == 'x' || t.specifier == 'X')
+		return (ft_puthexa_fd(fd, t, ap));
+	else if (t.specifier == 'p')
+		return (ft_putpointer_fd(fd, t, ap));
 	return (0);
 }

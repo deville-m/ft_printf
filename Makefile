@@ -19,7 +19,10 @@ FT_PUTSRC= $(addprefix $(FT_PUTSRC_DIR), \
 			ft_putchar_fd.c \
 			ft_putstr_fd.c \
 			ft_putint_fd.c \
-			ft_putuint_fd.c)
+			ft_putuint_fd.c \
+			ft_putoctal_fd.c \
+			ft_puthexa_fd.c \
+			ft_putpointer_fd.c)
 
 FT_UTILS_DIR= $(addprefix $(SRC_DIR), ft_utils/)
 FT_UTILS= $(addprefix $(FT_UTILS_DIR), \

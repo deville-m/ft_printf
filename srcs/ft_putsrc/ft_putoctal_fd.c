@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putuint_fd.c                                    :+:      :+:    :+:   */
+/*   ft_putoctal_fd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/07 09:39:11 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/07 11:11:51 by mdeville         ###   ########.fr       */
+/*   Created: 2017/12/07 11:09:51 by mdeville          #+#    #+#             */
+/*   Updated: 2017/12/07 12:03:26 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,17 @@ static char			*apply_options(
 						t_token token)
 {
 	char	*res;
+	int		prefix;
 
-	if (token.precision == 0 && n == 0)
-		res = ft_strdup("");
-	else if (token.precision == 1
+	prefix = ft_strchr(token.flags, '#') ? 1 : 0;
+	if (!prefix && token.precision == 0 && n == 0)
+	{
+		free(ascii);
+		return (ft_strdup(""));
+	}
+	if (*ascii != '0' && token.precision <= alen && prefix)
+		token.precision = alen + 1;
+	if (token.precision == 1
 		&& !ft_strchr(token.flags, '-')
 		&& ft_strchr(token.flags, '0'))
 		res = zero_case(ascii, alen, token);
@@ -73,7 +80,7 @@ static uintmax_t	convert(va_list ap, t_length length, char spe)
 	uintmax_t n;
 
 	n = va_arg(ap, uintmax_t);
-	if (length == l || spe == 'U')
+	if (length == l || spe == 'O')
 		n = (unsigned long)n;
 	else if (length == hh)
 		n = (unsigned char)n;
@@ -90,7 +97,7 @@ static uintmax_t	convert(va_list ap, t_length length, char spe)
 	return (n);
 }
 
-int					ft_putuint_fd(const int fd, t_token token, va_list ap)
+int					ft_putoctal_fd(const int fd, t_token token, va_list ap)
 {
 	uintmax_t	n;
 	int			len;
@@ -98,7 +105,7 @@ int					ft_putuint_fd(const int fd, t_token token, va_list ap)
 	char		*tmp;
 
 	n = convert(ap, token.length, token.specifier);
-	if (!(tmp = ft_utoa_base(n, "0123456789")))
+	if (!(tmp = ft_utoa_base(n, "01234567")))
 		return (0);
 	if (!(tmp = apply_options(n, tmp, ft_strlen(tmp), token)))
 		return (0);

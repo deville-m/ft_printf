@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 14:02:05 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/07 10:42:51 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/07 14:24:47 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,21 @@ int								ft_putint_fd(
 									va_list ap);
 
 int								ft_putuint_fd(
+									const int fd,
+									t_token token,
+									va_list ap);
+
+int								ft_putoctal_fd(
+									const int fd,
+									t_token token,
+									va_list ap);
+
+int								ft_puthexa_fd(
+									const int fd,
+									t_token token,
+									va_list ap);
+
+int								ft_putpointer_fd(
 									const int fd,
 									t_token token,
 									va_list ap);

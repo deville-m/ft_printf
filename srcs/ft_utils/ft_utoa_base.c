@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 09:22:25 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/07 10:42:28 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/07 11:12:22 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static size_t	ft_nbrlen(uintmax_t n, size_t blen)
 	return (cpt);
 }
 
-char		*ft_utoa_base(uintmax_t n, const char *base)
+char			*ft_utoa_base(uintmax_t n, const char *base)
 {
 	char	*res;
 	size_t	blen;
