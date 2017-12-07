@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 17:09:16 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/07 16:54:29 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/07 17:22:20 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int		print_token(const int fd, t_token t, va_list *ap)
 {
 	if (t.specifier == '%')
 		return (ft_putpercent_fd(fd, t));
+	else if (t.specifier == 'C' || (t.specifier == 'c' && t.length == l))
+		return (ft_putunichar_fd(fd, t, ap));
 	else if (t.specifier == 'c')
 		return (ft_putchar_fd(fd, t, ap));
 	else if (t.specifier == 's')

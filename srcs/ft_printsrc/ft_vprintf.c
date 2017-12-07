@@ -1,42 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vfprintf.c                                      :+:      :+:    :+:   */
+/*   ft_vprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/29 13:33:17 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/07 17:42:18 by mdeville         ###   ########.fr       */
+/*   Created: 2017/12/07 17:43:55 by mdeville          #+#    #+#             */
+/*   Updated: 2017/12/07 17:53:05 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_vfprintf(const int fd, const char *format, va_list ap)
+int		ft_vprintf(const char *format, va_list ap)
 {
-	size_t	i;
-	size_t	cpt;
+	int		res;
 	va_list	cpy;
-	t_token	token;
 
 	va_copy(cpy, ap);
-	if (!format)
-		return (-1);
-	i = 0;
-	cpt = 0;
-	while (format[i])
-	{
-		if (format[i] == '%' && (i += 1))
-		{
-			token = parse_token(format, &i, &cpy);
-			cpt += print_token(fd, token, &cpy);
-		}
-		else
-		{
-			write(1, format + i++, 1);
-			cpt += 1;
-		}
-	}
+	res = ft_vfprintf(1, format, cpy);
 	va_end(cpy);
-	return (cpt);
+	return (res);
 }

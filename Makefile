@@ -11,6 +11,7 @@ FT_PRINTSRC_DIR= $(addprefix $(SRC_DIR), ft_printsrc/)
 FT_PRINTSRC= $(addprefix $(FT_PRINTSRC_DIR), \
 			ft_printf.c \
 			ft_fprintf.c \
+			ft_vprintf.c \
 			ft_vfprintf.c)
 
 FT_PUTSRC_DIR= $(addprefix $(SRC_DIR), ft_putsrc/)
@@ -22,7 +23,8 @@ FT_PUTSRC= $(addprefix $(FT_PUTSRC_DIR), \
 			ft_putuint_fd.c \
 			ft_putoctal_fd.c \
 			ft_puthexa_fd.c \
-			ft_putpointer_fd.c)
+			ft_putpointer_fd.c \
+			ft_putunichar_fd.c)
 
 FT_UTILS_DIR= $(addprefix $(SRC_DIR), ft_utils/)
 FT_UTILS= $(addprefix $(FT_UTILS_DIR), \

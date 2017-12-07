@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 14:02:05 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/07 17:14:52 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/07 17:52:55 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,14 @@ int								ft_printf(
 									const char *format,
 									...);
 
+int								ft_vprintf(
+									const char *format,
+									va_list ap);
+
 int								ft_vfprintf(
 									const int fd,
 									const char *format,
-									va_list *ap);
+									va_list ap);
 
 /*
 ** Parsing functions
@@ -116,6 +120,11 @@ int								ft_puthexa_fd(
 									va_list *ap);
 
 int								ft_putpointer_fd(
+									const int fd,
+									t_token token,
+									va_list *ap);
+
+int								ft_putunichar_fd(
 									const int fd,
 									t_token token,
 									va_list *ap);
