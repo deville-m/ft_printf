@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 14:02:05 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/07 18:09:28 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/08 16:25:05 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,11 @@ int								ft_putoctal_fd(
 									va_list *ap);
 
 int								ft_puthexa_fd(
+									const int fd,
+									t_token token,
+									va_list *ap);
+
+int								ft_putbin_fd(
 									const int fd,
 									t_token token,
 									va_list *ap);

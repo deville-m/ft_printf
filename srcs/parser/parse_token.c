@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:36:20 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/07 16:53:59 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/08 16:26:19 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ t_token		parse_token(const char *str, size_t *i, va_list *ap)
 	*i += parse_width(str + *i, &token, ap);
 	*i += parse_precision(str + *i, &token, ap);
 	*i += parse_length(str + *i, &token);
-	if (str[*i] && ft_strchr("sSpdDioOuUxXcCn%", str[*i]))
+	if (str[*i] && ft_strchr("sSpdDioOuUxXcCnbB%", str[*i]))
 	{
 		token.specifier = str[*i];
 		if (!(token.specifier == 's' || token.specifier == 'S')

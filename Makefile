@@ -23,6 +23,7 @@ FT_PUTSRC= $(addprefix $(FT_PUTSRC_DIR), \
 			ft_putuint_fd.c \
 			ft_putoctal_fd.c \
 			ft_puthexa_fd.c \
+			ft_putbin_fd.c \
 			ft_putpointer_fd.c \
 			ft_putunichar_fd.c)
 
