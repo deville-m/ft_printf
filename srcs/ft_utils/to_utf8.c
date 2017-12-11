@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 11:02:27 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/11 17:34:08 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/11 17:41:48 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ static int	case_4(unsigned int unicode, char *utf8)
 
 static int	error(char *utf8)
 {
-	utf8[1] = 0xEF;
-	utf8[2] = 0xBF;
-	utf8[3] = 0xBD;
+	utf8[0] = 0xEF;
+	utf8[1] = 0xBF;
+	utf8[2] = 0xBD;
 	return (3);
 }
 
