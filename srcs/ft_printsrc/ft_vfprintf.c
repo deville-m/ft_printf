@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 13:33:17 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/07 17:42:18 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/11 15:27:38 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		ft_vfprintf(const int fd, const char *format, va_list ap)
 		}
 		else
 		{
-			write(1, format + i++, 1);
+			write(fd, format + i++, 1);
 			cpt += 1;
 		}
 	}

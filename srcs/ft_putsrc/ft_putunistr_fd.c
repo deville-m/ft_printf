@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 11:32:49 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/11 15:08:20 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/11 15:47:06 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	ft_unistrlen(const wchar_t *str)
 
 	i = 0;
 	len = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] < 0x80)
 			len += 1;
@@ -73,7 +73,7 @@ static int	wchar_to_utf(const wchar_t *unicode, char **utf8)
 		return (0);
 	if (!(*utf8 = (char *)malloc(utflen + 1)))
 		return (0);
-	while(unicode[i])
+	while (unicode[i])
 		j += to_utf8(unicode[i++], *utf8 + j);
 	(*utf8)[j] = '\0';
 	return (j);
