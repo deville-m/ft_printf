@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 11:02:27 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/11 17:03:09 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/11 17:34:08 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@ static int	case_4(unsigned int unicode, char *utf8)
 	utf8[2] = ((unicode >> 6) & 0x3F) | 0x80;
 	utf8[3] = (unicode & 0x3F) | 0x80;
 	return (4);
+}
+
+static int	error(char *utf8)
+{
+	utf8[1] = 0xEF;
+	utf8[2] = 0xBF;
+	utf8[3] = 0xBD;
+	return (3);
 }
 
 int			to_utf8(unsigned int unicode, char *utf8)
@@ -34,17 +42,16 @@ int			to_utf8(unsigned int unicode, char *utf8)
 		utf8[1] = (unicode & 0x3F) | 0x80;
 		return (2);
 	}
-	if (unicode < 0x10000 && MB_CUR_MAX >= 3)
+	if (unicode < 0x10000 && MB_CUR_MAX >= 3
+		&& !(unicode >= 0xD800 && unicode <= 0xDFFF))
 	{
 		utf8[0] = (unicode >> 12) | 0xE0;
 		utf8[1] = ((unicode >> 6) & 0x3F) | 0x80;
 		utf8[2] = (unicode & 0x3F) | 0x80;
 		return (3);
 	}
-	if (unicode <= 0x10FFFF && MB_CUR_MAX >= 4)
+	if (unicode <= 0x10FFFF && MB_CUR_MAX >= 4
+		&& !(unicode >= 0xD800 && unicode <= 0xDFFF))
 		return (case_4(unicode, utf8));
-	utf8[1] = 0xEF;
-	utf8[2] = 0xBF;
-	utf8[3] = 0xBD;
-	return (3);
+	return (error(utf8));
 }
