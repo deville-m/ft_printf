@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 11:32:49 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/11 15:47:06 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/11 17:04:01 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	ft_unistrlen(const wchar_t *str)
 		else if (str[i] <= 0x10FFFF)
 			len += 4;
 		else
-			return (0);
+			len += 3;
 		i++;
 	}
 	return (len);
