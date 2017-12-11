@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 11:32:49 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/11 17:04:01 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/11 17:12:19 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ static int	ft_unistrlen(const wchar_t *str)
 	len = 0;
 	while (str[i])
 	{
-		if (str[i] < 0x80)
+		if (str[i] < 0x80 && MB_CUR_MAX >= 1)
 			len += 1;
-		else if (str[i] < 0x800)
+		else if (str[i] < 0x800 && MB_CUR_MAX >= 2)
 			len += 2;
-		else if (str[i] < 0x10000)
+		else if (str[i] < 0x10000 && MB_CUR_MAX >= 3)
 			len += 3;
-		else if (str[i] <= 0x10FFFF)
+		else if (str[i] <= 0x10FFFF && MB_CUR_MAX >= 4)
 			len += 4;
 		else
 			len += 3;
