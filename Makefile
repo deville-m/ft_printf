@@ -19,6 +19,7 @@ FT_PUTSRC= $(addprefix $(FT_PUTSRC_DIR), \
 			ft_putpercent_fd.c \
 			ft_putchar_fd.c \
 			ft_putstr_fd.c \
+			ft_putunistr_fd.c \
 			ft_putint_fd.c \
 			ft_putuint_fd.c \
 			ft_putoctal_fd.c \
@@ -35,7 +36,8 @@ FT_UTILS= $(addprefix $(FT_UTILS_DIR), \
 			ft_itoa.c \
 			ft_utoa_base.c \
 			ft_strdup.c \
-			ft_strcpy.c)
+			ft_strcpy.c \
+			to_utf8.c)
 
 PARSER_DIR= $(addprefix $(SRC_DIR), parser/)
 PARSER= $(addprefix $(PARSER_DIR), \

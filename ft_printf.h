@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 14:02:05 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/08 16:25:05 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/11 14:41:56 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,11 @@ int								ft_putunichar_fd(
 									t_token token,
 									va_list *ap);
 
+int								ft_putunistr_fd(
+									const int fd,
+									t_token token,
+									va_list *ap);
+
 /*
 ** Utilities
 */
@@ -143,6 +148,7 @@ size_t							ft_strlen(const char *str);
 char							*ft_strchr(const char *s, int c);
 char							*ft_strdup(const char *str);
 int								ft_atoi(const char *str);
+int								to_utf8(unsigned int unicode, char *utf8);
 char							*ft_itoa(intmax_t n);
 char							*ft_utoa_base(uintmax_t n, const char *base);
 char							*ft_strcpy(char *dst, const char *src);

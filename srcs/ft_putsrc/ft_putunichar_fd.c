@@ -6,46 +6,29 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 17:22:35 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/08 16:17:32 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/11 13:54:33 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	print(const int fd, unsigned int c)
-{
-	if (c <= 0x7F)
-	{
-		write(fd, &c, 1);
-	}
-	else if (c >= 0x80 && c <= 0x7FF)
-	{
-		write(fd, &c, 2);
-	}
-	else if (c <= 0xFFFF)
-	{
-		write(fd, &c, 3);
-	}
-	else if (c <= 0x1FFFFF)
-	{
-		write(fd, &c, 4);
-	}
-}
-
 int		ft_putunichar_fd(const int fd, t_token token, va_list *ap)
 {
+	char			utf8[4];
+	int				len;
 	unsigned int	c;
 	int				cpt;
 
 	c = (unsigned int)va_arg(*ap, wint_t);
-	cpt = (token.width > 1) ? token.width - 1 : 1;
+	len = to_utf8(c, utf8);
+	cpt = (token.width > len) ? token.width : len;
 	if (!ft_strchr(token.flags, '-'))
 	{
-		while (token.width-- > 1)
+		while (token.width-- > len)
 			write(fd, " ", 1);
 	}
-	print(fd, c);
-	while (token.width-- > 1)
+	write(fd, utf8, len);
+	while (token.width-- > len)
 		write(fd, " ", 1);
 	return (cpt);
 }
