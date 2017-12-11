@@ -26,7 +26,8 @@ FT_PUTSRC= $(addprefix $(FT_PUTSRC_DIR), \
 			ft_puthexa_fd.c \
 			ft_putbin_fd.c \
 			ft_putpointer_fd.c \
-			ft_putunichar_fd.c)
+			ft_putunichar_fd.c \
+			ft_putn_fd.c)
 
 FT_UTILS_DIR= $(addprefix $(SRC_DIR), ft_utils/)
 FT_UTILS= $(addprefix $(FT_UTILS_DIR), \

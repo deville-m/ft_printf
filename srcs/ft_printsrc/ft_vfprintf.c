@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 13:33:17 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/11 15:27:38 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/11 15:53:31 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		ft_vfprintf(const int fd, const char *format, va_list ap)
 		if (format[i] == '%' && (i += 1))
 		{
 			token = parse_token(format, &i, &cpy);
-			cpt += print_token(fd, token, &cpy);
+			cpt += print_token(fd, token, &cpy, cpt);
 		}
 		else
 		{

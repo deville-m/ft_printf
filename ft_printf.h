@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 14:02:05 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/11 14:41:56 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/11 16:06:18 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ t_token							parse_token(
 int								print_token(
 									const int fd,
 									t_token token,
-									va_list *ap);
+									va_list *ap,
+									int cpt);
 
 int								ft_putpercent_fd(
 									const int fd,
@@ -138,6 +139,10 @@ int								ft_putunichar_fd(
 int								ft_putunistr_fd(
 									const int fd,
 									t_token token,
+									va_list *ap);
+
+void							ft_putn_fd(
+									int n,
 									va_list *ap);
 
 /*

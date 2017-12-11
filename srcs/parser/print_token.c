@@ -6,13 +6,13 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 17:09:16 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/11 15:47:20 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/11 16:04:58 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		print_token(const int fd, t_token t, va_list *ap)
+int		print_token(const int fd, t_token t, va_list *ap, int cpt)
 {
 	if (t.specifier == '%')
 		return (ft_putpercent_fd(fd, t));
@@ -36,5 +36,7 @@ int		print_token(const int fd, t_token t, va_list *ap)
 		return (ft_putpointer_fd(fd, t, ap));
 	else if (t.specifier == 'b' || t.specifier == 'B')
 		return (ft_putbin_fd(fd, t, ap));
+	else if (t.specifier == 'n')
+		ft_putn_fd(cpt, ap);
 	return (0);
 }
