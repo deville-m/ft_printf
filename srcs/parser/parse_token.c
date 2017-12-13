@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:36:20 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/08 16:26:19 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/13 15:40:51 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static int	parse_flags(const char *s, t_token *token)
 	while (cpt < 5)
 		token->flags[cpt++] = '\0';
 	cpt = 0;
-	while (ft_strchr("# -0+", s[i]) && cpt < 4)
+	while (ft_strchr("# -0+", s[i]) && cpt < 5)
 	{
 		if (!ft_strchr(token->flags, s[i]))
 			token->flags[cpt++] = s[i];

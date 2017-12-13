@@ -6,7 +6,7 @@
 /*   By: mdeville <mdeville@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 14:02:05 by mdeville          #+#    #+#             */
-/*   Updated: 2017/12/11 16:06:18 by mdeville         ###   ########.fr       */
+/*   Updated: 2017/12/13 15:38:38 by mdeville         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef enum					e_length
 
 typedef struct					s_token
 {
-	char			flags[5];
+	char			flags[6];
 	int				width;
 	int				precision;
 	t_length		length;
